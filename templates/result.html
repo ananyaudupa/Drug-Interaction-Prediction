@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Result</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .result { margin-top: 20px; }
+        h2 { color: green; }
+    </style>
+</head>
+<body>
+    <h1>Prediction Result</h1>
+    <div class="result">
+        <h2>Interaction Details:</h2>
+        <p><strong>Drug 1:</strong> {{ result['drug1'] }}</p>
+        <p><strong>Drug 2:</strong> {{ result['drug2'] }}</p>
+        <p><strong>Description:</strong> {{ result['description'] }}</p>
+        <p><strong>Severity:</strong> {{ result['severity'] }}</p>
+        <p><strong>Confidence Score:</strong> {{ result['confidence_score'] }}</p>
+    </div>
+</body>
+</html>
