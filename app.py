@@ -15,8 +15,8 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 app = FastAPI(title="Drug Interaction Prediction API",
-             description="API for predicting drug interactions and their severity",
-             version="1.0.0")
+              description="API for predicting drug interactions and their severity",
+              version="1.0.0")
 
 class ModelManager:
     def __init__(self):
@@ -45,13 +45,16 @@ class ModelManager:
             if missing_columns:
                 raise ValueError(f"Missing required columns: {', '.join(missing_columns)}")
             
+            # Normalize and preprocess data
+            self.df['drug1_name'] = self.df['drug1_name'].str.strip().str.lower()
+            self.df['drug2_name'] = self.df['drug2_name'].str.strip().str.lower()
+            
             # Initialize and fit label encoders
             self.le_drug1 = LabelEncoder()
             self.le_drug2 = LabelEncoder()
             self.le_severity = LabelEncoder()
             self.le_description = LabelEncoder()
             
-            # Preprocess data
             self.df['drug1_encoded'] = self.le_drug1.fit_transform(self.df['drug1_name'])
             self.df['drug2_encoded'] = self.le_drug2.fit_transform(self.df['drug2_name'])
             self.df['severity_encoded'] = self.le_severity.fit_transform(self.df['Severity'])
